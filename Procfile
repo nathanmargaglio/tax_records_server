@@ -1,1 +1,1 @@
-web: gunicorn tax_records.wsgi
+web: gunicorn --pythonpath tax_records tax_records.wsgi
