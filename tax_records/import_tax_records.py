@@ -52,7 +52,6 @@ with open(sys.argv[1], 'r') as file:
         r.link = row[2]
         r.sbl = row[5]
         r.swiss = row[6]
-        records.append(r)
 
         r.raw_name = row[3].strip()
         try:
