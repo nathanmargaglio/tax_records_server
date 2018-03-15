@@ -25,7 +25,7 @@ SECRET_KEY = 'w6u!%yh+*9d2z5%%70v7ln-yk+fq*!v4@_vpwlow-)b*kf1qoy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -55,6 +55,11 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}
 
 ROOT_URLCONF = 'tax_records.urls'
 
@@ -137,6 +142,3 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
-import django_heroku
-django_heroku.settings(locals())

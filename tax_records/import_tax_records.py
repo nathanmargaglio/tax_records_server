@@ -10,7 +10,7 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv())
 from django.conf import settings
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'travel_records.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tax_records.settings')
 django.setup()
 
 from rest_api.models import Record
@@ -49,6 +49,9 @@ with open(sys.argv[1], 'r') as file:
         r.city = row[1]
         r.county = "Erie County"
         r.state = "NY"
+        r.link = row[2]
+        r.sbl = row[5]
+        r.swiss = row[6]
         records.append(r)
 
         r.raw_name = row[3].strip()
