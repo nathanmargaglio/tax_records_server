@@ -49,19 +49,19 @@ with open(sys.argv[1], 'r') as file:
         r.city = row[1]
         r.county = "Erie County"
         r.state = "NY"
-        #p.save()
         records.append(r)
 
         r.raw_name = row[3].strip()
-	try:
-		r.first_name = row[3].strip().split(' ')[1]
-	except:
-		pass
-	try:
-		r.last_name = row[3].strip().split(' ')[0]
-	except:
-		pass
-        records.append(o)
+        try:
+            r.first_name = row[3].strip().split(' ')[1]
+        except:
+            pass
+        try:
+            r.last_name = row[3].strip().split(' ')[0]
+        except:
+            pass
+
+        records.append(r)
 
         tf = time.time()
 

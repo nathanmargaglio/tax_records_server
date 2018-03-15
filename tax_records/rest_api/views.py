@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from rest_api.serializers import UserSerializer, GroupSerializer
-
+from rest_api.serializers import UserSerializer, GroupSerializer, RecordSerializer
+from rest_api.models import Record
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -17,3 +17,13 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
+
+class RecordViewSet(viewsets.ModelViewSet):
+    queryset = Record.objects.all()
+    serializer_class = RecordSerializer
+
+    def get_queryset(self):
+        query_params = self.request.GET
+        if 'single' in query_params and query_params['single'] in ['true', 'True', 'TRUE']:
+            return Record().get_single_result(query_params)
+        return Record().get_by_components(query_params)
